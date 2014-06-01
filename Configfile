@@ -1,0 +1,6 @@
+LANGUAGES   += bash
+
+GENERATE    += chisel-jar.bash
+
+BINARIES    += chisel-jargen
+SOURCES     += jargen.bash

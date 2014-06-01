@@ -1,0 +1,40 @@
+#!/bin/bash
+
+CHISEL_HASH="84a2490d369050f5969a25a6031056f6edb2488e"
+
+if [[ "$1" == "--deps" ]]
+then
+    exit 0
+fi
+
+if [[ "$1" == "--generate" ]]
+then
+    tempdir=`mktemp -d -t generate_chisel-jar.XXXXXXXXXX`
+    trap "rm -rf $tempdir" EXIT
+
+    cd $tempdir
+    git clone git://github.com/ucb-bar/chisel --reference /var/cache/git \
+        >& /dev/null
+    cd chisel
+    git reset --hard $CHISEL_HASH >& /dev/null
+    sbt publish-local >& /dev/null
+
+# Here we actually generate the BASH archive that's going to be used
+echo "CHISEL_HASH=\"$CHISEL_HASH\""
+echo "CHISEL_VERSION=\"$(git describe)\""
+
+cat <<"EOF"
+CHISEL_JAR_DIR=`mktemp -d -t chisel-benchmarks.XXXXXXXXXX`
+trap "rm -rf $CHISEL_JAR_DIR" EXIT
+
+cat >$CHISEL_JAR_DIR/chisel.jar.base64 <<EOF
+EOF
+
+cat target/scala-*/chisel_*-SNAPSHOT.jar | base64
+
+cat <<"EOFEOF"
+EOF
+cat $CHISEL_JAR_DIR/chisel.jar.base64 | base64 -d > $CHISEL_JAR_DIR/chisel.jar
+
+EOFEOF
+fi
