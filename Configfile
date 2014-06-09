@@ -4,3 +4,6 @@ GENERATE    += chisel-jar.bash
 
 BINARIES    += chisel-jargen
 SOURCES     += jargen.bash
+
+BINARIES    += chisel-hdrtar
+SOURCES     += hdrtar.bash
