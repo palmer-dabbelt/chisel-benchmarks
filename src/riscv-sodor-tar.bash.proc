@@ -24,7 +24,7 @@ then
     cat >$tempdir/install/bin/vcd2vpd <<"EOF"
 #!/bin/bash
 
-cat $1 | sed s/'^$var reg '/'^$var wire '/ > $2
+cat $1 | sed s/'^$var reg '/'$var wire '/ > $2
 EOF
     chmod +x $tempdir/install/bin/vcd2vpd
 
