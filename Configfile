@@ -1,9 +1,13 @@
 LANGUAGES   += bash
 
 GENERATE    += chisel-jar.bash
+GENERATE    += riscv-sodor-tar.bash
 
 BINARIES    += chisel-jargen
 SOURCES     += jargen.bash
 
 BINARIES    += chisel-hdrtar
 SOURCES     += hdrtar.bash
+
+BINARIES    += chisel-benchmarks-rv32
+SOURCES     += rv32.bash
