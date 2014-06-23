@@ -9,5 +9,5 @@ SOURCES     += jargen.bash
 BINARIES    += chisel-hdrtar
 SOURCES     += hdrtar.bash
 
-BINARIES    += chisel-benchmarks-rv32
-SOURCES     += rv32.bash
+#BINARIES    += chisel-benchmarks-rv32
+#SOURCES     += rv32.bash
