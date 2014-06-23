@@ -40,7 +40,7 @@ EOF
     cat <<"EOFEOF"
 EOF
 
-cat $CHISEL_JAR_DIR/chisel.jar.base64 | base64 -d > $CHISEL_JAR_DIR/chisel.jar
+cat $CHISEL_JAR_DIR/chisel.jar.base64 | base64 --decode > $CHISEL_JAR_DIR/chisel.jar
 EOFEOF
 
     # Stick the headers in that archive
@@ -54,7 +54,7 @@ EOF
     cat <<"EOFEOF"
 EOF
 
-cat $CHISEL_JAR_DIR/headers.tar.base64 | base64 -d > $CHISEL_JAR_DIR/headers.tar
+cat $CHISEL_JAR_DIR/headers.tar.base64 | base64 --decode > $CHISEL_JAR_DIR/headers.tar
 EOFEOF
 
 # Note this fi, the tabs are broken because of the EOFs
