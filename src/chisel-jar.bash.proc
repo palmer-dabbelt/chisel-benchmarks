@@ -3,6 +3,13 @@
 set -e
 set -o pipefail
 
+# If there's a git cache then use it, otherwise don't bother
+cache=""
+if test -d /var/cache/git
+then
+    cache="--reference /var/cache/git"
+fi
+
 CHISEL_HASH="333bb95fd6e2780d6f3629699497953e333ef001"
 
 if [[ "$1" == "--deps" ]]
@@ -16,7 +23,7 @@ then
     trap "rm -rf $tempdir" EXIT
 
     cd $tempdir
-    git clone git://github.com/ucb-bar/chisel --reference /var/cache/git \
+    git clone git://github.com/ucb-bar/chisel $cache \
         >& /dev/null
     cd chisel
     git reset --hard $CHISEL_HASH >& /dev/null
