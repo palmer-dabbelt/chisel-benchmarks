@@ -3,7 +3,7 @@
 set -e
 set -o pipefail
 
-CHISEL_HASH="bcbe3e3a6d0d9944044409f12fea97a79a4ebce5"
+CHISEL_HASH="333bb95fd6e2780d6f3629699497953e333ef001"
 
 if [[ "$1" == "--deps" ]]
 then
