@@ -5,7 +5,7 @@ set -o pipefail
 
 # If there's a git cache then use it, otherwise don't bother
 cache=""
-if test -d /var/cache/git
+if test -f /var/cache/git/HEAD
 then
     cache="--reference /var/cache/git"
 fi
