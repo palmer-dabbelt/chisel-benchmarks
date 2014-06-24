@@ -9,3 +9,6 @@
 Makefile*
 
 *~
+
+# This is special for Ubuntu
+/local_git

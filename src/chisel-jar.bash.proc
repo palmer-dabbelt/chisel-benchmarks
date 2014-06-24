@@ -3,11 +3,22 @@
 set -e
 set -o pipefail
 
+top="$(pwd)"
+
 # If there's a git cache then use it, otherwise don't bother
 cache=""
 if test -f /var/cache/git/HEAD
 then
     cache="--reference /var/cache/git"
+fi
+
+# Check if there's a local git repo, in which case we should use it.
+# This is used for the Ubuntu build servers, who don't appears to have
+# git access.
+git_repo="https://github.com/ucb-bar/chisel"
+if test -d "$top"/local_git/chisel
+then
+    git_repo=file://"$top"/local_git/chisel
 fi
 
 CHISEL_HASH="333bb95fd6e2780d6f3629699497953e333ef001"
@@ -23,7 +34,7 @@ then
     trap "rm -rf $tempdir" EXIT
 
     cd $tempdir
-    git clone https://github.com/ucb-bar/chisel $cache > /dev/null
+    git clone $git_repo $cache > /dev/null
     cd chisel
     git reset --hard $CHISEL_HASH > /dev/null
     sbt publish-local > /dev/null
