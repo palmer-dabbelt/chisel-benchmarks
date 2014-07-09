@@ -1,4 +1,4 @@
-#include "chisel-jar.bash"
+#include "chisel-params.bash"
 
 if [[ "$1" == "" ]]
 then
@@ -20,4 +20,9 @@ then
     exit 0
 fi
 
-cat $CHISEL_JAR_DIR/chisel.jar > $1
+ARCHIVE=`awk '/^__ARCHIVE_BELOW__/ {print NR + 1; exit 0; }' $0`
+tail -n+$ARCHIVE $0 | base64 --decode > $1
+
+exit 0
+__ARCHIVE_BELOW__
+#include "chisel-jar.bash"
