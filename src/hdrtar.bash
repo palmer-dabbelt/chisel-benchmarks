@@ -1,4 +1,4 @@
-#include "chisel-jar.bash"
+#include "chisel-params.bash"
 
 if [[ "$1" == "" ]]
 then
