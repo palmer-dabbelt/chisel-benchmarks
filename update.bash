@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Configuration bits...
-CHISEL_HASH="333bb95fd6e2780d6f3629699497953e333ef001"
+CHISEL_HASH="b957336f965fc0b081df773929f42ab2a5fc115a"
 
 # Reference the main directory, for later
 TOP="$(pwd)"
